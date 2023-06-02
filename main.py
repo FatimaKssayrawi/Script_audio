@@ -133,7 +133,7 @@ headers = {
 }
 
 response = requests.get(url, headers=headers)
-while response.json()["converted"]== False:
+while not response.json()["converted"]:
     response = requests.get(url, headers=headers)
 response_data = response.json()
 audio_url = response_data.get('audioUrl')
