@@ -45,6 +45,7 @@ def generate(prompt):
     res = api_response["choices"][0]["text"]
 
     return res
+response = ''
 # Button to fetch the response
 # if the button is pressed, the code will be executed
 if st.button("**Click here to generate script and audio**"):
