@@ -131,11 +131,45 @@ headers = {
     "AUTHORIZATION": os.getenv('SECRET_KEY'),
     "X-USER-ID": os.getenv('USER_ID')
 }
-
+'''
 response = requests.get(url, headers=headers)
 while not response.json()["converted"]:
     response = requests.get(url, headers=headers)
 response_data = response.json()
 audio_url = response_data.get('audioUrl')
+'''
+
+import time
+
+headers = {
+    "User-Agent": "Your User Agent",
+}
+
+# Polling interval in seconds
+polling_interval = 5
+
+
+def check_condition(response_data):
+    return response_data.get("converted", False)
+
+
+def get_audio_url(url, headers):
+    response = requests.get(url, headers=headers)
+
+    while True:
+        response_data = response.json()
+
+        if check_condition(response_data):
+            audio_url = response_data.get("audioUrl")
+            return audio_url
+
+        time.sleep(polling_interval)
+        response = requests.get(url, headers=headers)
+
+
+# Usage
+audio_url = get_audio_url(url, headers)
+print("Audio URL:", audio_url)
+
 st.write("**Click on the below URL to download the audio in mp3 format:**")
 st.write(audio_url)
