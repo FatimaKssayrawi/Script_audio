@@ -5,7 +5,7 @@ import dotenv
 import openai
 dotenv.load_dotenv('.env')
 
-#url = "https://play.ht/api/v1/convert"
+url = "https://play.ht/api/v1/convert"
 
 # Streamlit app title and description
 st.title("Youtube Video Script Generator")
