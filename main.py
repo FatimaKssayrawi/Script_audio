@@ -55,8 +55,8 @@ if st.button("**Click here to generate script and audio**"):
 
         # Display the response in Streamlit
         st.write(" Youtube Video Script: ")
-        st.write(prompt)
-        st.write(response)
+        #st.write(prompt)
+        #st.write(response)
 
 def remove_text_in_brackets(text):
     result = ""
